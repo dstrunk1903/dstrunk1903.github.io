@@ -37,7 +37,7 @@
         async function readWeather(strCurrTemp, strCurrHumidity, strWeatherCode){
             try {
                 const objResponse = await fetch(strBaseURL, {
-                    method:'POST',
+                    method:'GET',
                     headers: {
                         'Content-Type':'application/json'
                     },
