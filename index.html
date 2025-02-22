@@ -55,9 +55,9 @@
                 console.log(objData)
 
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Temperature: ${objData.current.temperature_2m}${objData.current_units.temperature_2m}</p>`
-                document.querySelector('#divWeatherMain').innerHTML += `<h1 class="bi bi-thermometer"></h1>`
+                document.querySelector('#divWeatherMain').innerHTML += `<h1 class="bi bi-thermometer text-center"></h1>`
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Humidity: ${objData.current.relative_humidity_2m}${objData.current_units.relative_humidity_2m}</p>`
-                document.querySelector('#divWeatherMain').innerHTML += `<h1 class="bi bi-moisture"></h1>`
+                document.querySelector('#divWeatherMain').innerHTML += `<h1 class="bi bi-moisture text-center"></h1>`
 
                 let strWeatherCond = ''
                 let strIconHTML = ''
@@ -70,107 +70,107 @@
                         break
                     case 1:
                         strWeatherCond = 'Mainly clear'
-                        strIconHTML = '<h1 class="bi bi-brightness-low center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-brightness-low text-center"></h1>'
                         break
                     case 2:
                         strWeatherCond = 'Partly cloudy'
-                        strIconHTML = '<h1 class="bi bi-cloud center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud text-center"></h1>'
                         break
                     case 3:
                         strWeatherCond = 'Overcast'
-                        strIconHTML = '<h1 class="bi bi-clouds center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-clouds text-center"></h1>'
                         break
                     case 45:
                         strWeatherCond = 'Fog'
-                        strIconHTML = '<h1 class="bi bi-cloud-fog center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-fog text-center"></h1>'
                         break
                     case 48:
                         strWeatherCond = 'Depositing rime fog'
-                        strIconHTML = '<h1 class="bi bi-cloud-fog2 center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-fog2 text-center"></h1>'
                         break
                     case 51:
                         strWeatherCond = 'Light drizzle'
-                        strIconHTML = '<h1 class="bi bi-cloud-drizzle center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-drizzle text-center"></h1>'
                         break
                     case 53:
                         strWeatherCond = 'Moderate drizzle'
-                        strIconHTML = '<h1 class="bi bi-cloud-drizzle center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-drizzle text-center"></h1>'
                         break
                     case 55:
                         strWeatherCond = 'Dense drizzle'
-                        strIconHTML = '<h1 class="bi bi-cloud-drizzle center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-drizzle text-center"></h1>'
                         break
                     case 56:
                         strWeatherCond = 'Light freezing drizzle'
-                        strIconHTML = '<h1 class="bi bi-cloud-drizzle center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-drizzle text-center"></h1>'
                         break
                     case 57:
                         strWeatherCond = 'Dense freezing drizzle'
-                        strIconHTML = '<h1 class="bi bi-cloud-drizzle center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-drizzle text-center"></h1>'
                         break
                     case 61:
                         strWeatherCond = 'Slight rain'
-                        strIconHTML = '<h1 class="bi bi-cloud-rain center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-rain text-center"></h1>'
                         break
                     case 63:
                         strWeatherCond = 'Moderate rain'
-                        strIconHTML = '<h1 class="bi bi-cloud-rain center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-rain text-center"></h1>'
                         break
                     case 65:
                         strWeatherCond = 'Heavy rain'
-                        strIconHTML = '<h1 class="bi bi-cloud-rain-heavy center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-rain-heavy text-center"></h1>'
                         break
                     case 66:
                         strWeatherCond = 'Light freezing rain'
-                        strIconHTML = '<h1 class="bi bi-cloud-sleet center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-sleet text-center"></h1>'
                         break
                     case 67:
                         strWeatherCond = 'Heavy freezing rain'
-                        strIconHTML = '<h1 class="bi bi-cloud-sleet center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-sleet text-center"></h1>'
                         break
                     case 71:
                         strWeatherCond = 'Slight snow fall'
-                        strIconHTML = '<h1 class="bi bi-cloud-snow center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-snow text-center"></h1>'
                         break
                     case 73:
                         strWeatherCond = 'Moderate snow fall'
-                        strIconHTML = '<h1 class="bi bi-cloud-snow center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-snow text-center"></h1>'
                         break
                     case 75:
                         strWeatherCond = 'Heavy snow fall'
-                        strIconHTML = '<h1 class="bi bi-cloud-snow center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-snow text-center"></h1>'
                         break
                     case 77:
                         strWeatherCond = 'Snow grains'
-                        strIconHTML = '<h1 class="bi bi-cloud-sleet center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-sleet text-center"></h1>'
                         break
                     case 80:
                         strWeatherCond = 'Slight rain showers'
-                        strIconHTML = '<h1 class="bi bi-cloud-rain center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-rain text-center"></h1>'
                         break
                     case 81:
                         strWeatherCond = 'Moderate rain showers'
-                        strIconHTML = '<h1 class="bi bi-cloud-rain center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-rain text-center"></h1>'
                         break
                     case 82:
                         strWeatherCond = 'Violent rain showers'
-                        strIconHTML = '<h1 class="bi bi-cloud-rain-heavy center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-rain-heavy text-center"></h1>'
                         break
                     case 85:
                         strWeatherCond = 'Slight snow showers'
-                        strIconHTML = '<h1 class="bi bi-cloud-snow center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-snow text-center"></h1>'
                         break
                     case 86:
                         strWeatherCond = 'Heavy snow showers'
-                        strIconHTML = '<h1 class="bi bi-cloud-snow center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-snow text-center"></h1>'
                         break
                     case 95:
                         strWeatherCond = 'Thunderstorm'
-                        strIconHTML = '<h1 class="bi bi-cloud-lightning-rain center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-cloud-lightning-rain text-center"></h1>'
                         break
                     default:
                         strWeatherCond = 'Unexpected error'
-                        strIconHTML = '<h1 class="bi bi-bug center"></h1>'
+                        strIconHTML = '<h1 class="bi bi-bug text-center"></h1>'
                         break
                     // Thunderstorm forecasts with hail are apparently only available in Central Europe, so I won't include them in this switch statement
                 }
