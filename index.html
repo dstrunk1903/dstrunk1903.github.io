@@ -143,9 +143,10 @@
                         strWeatherCond = 'Unexpected error'
                         break
                     // Thunderstorm forecasts with hail are apparently only available in Central Europe, so I won't include them in this switch statement
-
-                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Weather Conditions: ${strWeatherCond}</p>`
                 }
+
+                document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Weather Conditions: ${strWeatherCond}</p>`
+
             } catch(objError){
                 console.log('Error fetching objData',objError)
             }
