@@ -56,8 +56,96 @@
 
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Temperature: ${objData.current.temperature_2m}${objData.current_units.temperature_2m}</p>`
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Humidity: ${objData.current.relative_humidity_2m}${objData.current_units.relative_humidity_2m}</p>`
-                document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Weather Code: ${objData.current.weather_code}</p>`
 
+                let strWeatherCond = ''
+
+                // Switch statement to dynamically interpret WMO codes
+                switch(objData.current.weather_code){
+                    case 0:
+                        strWeatherCond = 'Clear sky'
+                        break
+                    case 1:
+                        strWeatherCond = 'Mainly clear'
+                        break
+                    case 2:
+                        strWeatherCond = 'Partly cloudy'
+                        break
+                    case 3:
+                        strWeatherCond = 'Overcast'
+                        break
+                    case 45:
+                        strWeatherCond = 'Fog'
+                        break
+                    case 48:
+                        strWeatherCond = 'Depositing rime fog'
+                        break
+                    case 51:
+                        strWeatherCond = 'Light drizzle'
+                        break
+                    case 53:
+                        strWeatherCond = 'Moderate drizzle'
+                        break
+                    case 55:
+                        strWeatherCond = 'Dense drizzle'
+                        break
+                    case 56:
+                        strWeatherCond = 'Light freezing drizzle'
+                        break
+                    case 57:
+                        strWeatherCond = 'Dense freezing drizzle'
+                        break
+                    case 61:
+                        strWeatherCond = 'Slight rain'
+                        break
+                    case 63:
+                        strWeatherCond = 'Moderate rain'
+                        break
+                    case 65:
+                        strWeatherCond = 'Heavy rain'
+                        break
+                    case 66:
+                        strWeatherCond = 'Light freezing rain'
+                        break
+                    case 67:
+                        strWeatherCond = 'Heavy freezing rain'
+                        break
+                    case 71:
+                        strWeatherCond = 'Slight snow fall'
+                        break
+                    case 73:
+                        strWeatherCond = 'Moderate snow fall'
+                        break
+                    case 75:
+                        strWeatherCond = 'Heavy snow fall'
+                        break
+                    case 77:
+                        strWeatherCond = 'Snow grains'
+                        break
+                    case 80:
+                        strWeatherCond = 'Slight rain showers'
+                        break
+                    case 81:
+                        strWeatherCond = 'Moderate rain showers'
+                        break
+                    case 82:
+                        strWeatherCond = 'Violent rain showers'
+                        break
+                    case 85:
+                        strWeatherCond = 'Slight snow showers'
+                        break
+                    case 86:
+                        strWeatherCond = 'Heavy snow showers'
+                        break
+                    case 95:
+                        strWeatherCond = 'Thunderstorm'
+                        break
+                    default:
+                        strWeatherCond = 'Unexpected error'
+                        break
+                    // Thunderstorm forecasts with hail are apparently only available in Central Europe, so I won't include them in this switch statement
+
+                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Weather Conditions: ${strWeatherCond}</p>`
+                }
             } catch(objError){
                 console.log('Error fetching objData',objError)
             }
