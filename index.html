@@ -26,7 +26,7 @@
                 <h1 class="text-center text-primary mb-0">Caracal Weather Services</h1>
                 <h3 class="text-center mb-0">Cookeville Weather Report</h3>
                 <hr>
-            </div>
+            </div class="mb-0">
             <div>
                 <!-- Open Meteo attribution -->
                 <p class="text-center mb-0">Weather data provided by Open Meteo</p>
@@ -58,96 +58,123 @@
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Humidity: ${objData.current.relative_humidity_2m}${objData.current_units.relative_humidity_2m}</p>`
 
                 let strWeatherCond = ''
-                let strIconID = ''
+                let strIconHTML = ''
 
-                // Switch statement to dynamically interpret WMO codes
+                // Switch statement to dynamically interpret WMO codes and assign a corresponding bootstrap icon
                 switch(objData.current.weather_code){
                     case 0:
                         strWeatherCond = 'Clear sky'
+                        strIconHTML = '<i class="bi bi-brightness-high"></i>'
                         break
                     case 1:
                         strWeatherCond = 'Mainly clear'
+                        strIconHTML = '<i class="bi bi-brightness-low"></i>'
                         break
                     case 2:
                         strWeatherCond = 'Partly cloudy'
+                        strIconHTML = '<i class="bi bi-cloud"></i>'
                         break
                     case 3:
                         strWeatherCond = 'Overcast'
+                        strIconHTML = '<i class="bi bi-clouds"></i>'
                         break
                     case 45:
                         strWeatherCond = 'Fog'
+                        strIconHTML = '<i class="bi bi-cloud-fog"></i>'
                         break
                     case 48:
                         strWeatherCond = 'Depositing rime fog'
+                        strIconHTML = '<i class="bi bi-cloud-fog2"></i>'
                         break
                     case 51:
                         strWeatherCond = 'Light drizzle'
+                        strIconHTML = '<i class="bi bi-cloud-drizzle"></i>'
                         break
                     case 53:
                         strWeatherCond = 'Moderate drizzle'
+                        strIconHTML = '<i class="bi bi-cloud-drizzle"></i>'
                         break
                     case 55:
                         strWeatherCond = 'Dense drizzle'
+                        strIconHTML = '<i class="bi bi-cloud-drizzle"></i>'
                         break
                     case 56:
                         strWeatherCond = 'Light freezing drizzle'
+                        strIconHTML = '<i class="bi bi-cloud-drizzle"></i>'
                         break
                     case 57:
                         strWeatherCond = 'Dense freezing drizzle'
+                        strIconHTML = '<i class="bi bi-cloud-drizzle"></i>'
                         break
                     case 61:
                         strWeatherCond = 'Slight rain'
+                        strIconHTML = '<i class="bi bi-cloud-rain"></i>'
                         break
                     case 63:
                         strWeatherCond = 'Moderate rain'
+                        strIconHTML = '<i class="bi bi-cloud-rain"></i>'
                         break
                     case 65:
                         strWeatherCond = 'Heavy rain'
+                        strIconHTML = '<i class="bi bi-cloud-rain-heavy"></i>'
                         break
                     case 66:
                         strWeatherCond = 'Light freezing rain'
+                        strIconHTML = '<i class="bi bi-cloud-sleet"></i>'
                         break
                     case 67:
                         strWeatherCond = 'Heavy freezing rain'
+                        strIconHTML = '<i class="bi bi-cloud-sleet"></i>'
                         break
                     case 71:
                         strWeatherCond = 'Slight snow fall'
+                        strIconHTML = '<i class="bi bi-cloud-snow"></i>'
                         break
                     case 73:
                         strWeatherCond = 'Moderate snow fall'
+                        strIconHTML = '<i class="bi bi-cloud-snow"></i>'
                         break
                     case 75:
                         strWeatherCond = 'Heavy snow fall'
+                        strIconHTML = '<i class="bi bi-cloud-snow"></i>'
                         break
                     case 77:
                         strWeatherCond = 'Snow grains'
+                        strIconHTML = '<i class="bi bi-cloud-sleet"></i>'
                         break
                     case 80:
                         strWeatherCond = 'Slight rain showers'
+                        strIconHTML = '<i class="bi bi-cloud-rain"></i>'
                         break
                     case 81:
                         strWeatherCond = 'Moderate rain showers'
+                        strIconHTML = '<i class="bi bi-cloud-rain"></i>'
                         break
                     case 82:
                         strWeatherCond = 'Violent rain showers'
+                        strIconHTML = '<i class="bi bi-cloud-rain-heavy"></i>'
                         break
                     case 85:
                         strWeatherCond = 'Slight snow showers'
+                        strIconHTML = '<i class="bi bi-cloud-snow"></i>'
                         break
                     case 86:
                         strWeatherCond = 'Heavy snow showers'
+                        strIconHTML = '<i class="bi bi-cloud-snow"></i>'
                         break
                     case 95:
                         strWeatherCond = 'Thunderstorm'
+                        strIconHTML = '<i class="bi bi-cloud-lightning-rain"></i>'
                         break
                     default:
                         strWeatherCond = 'Unexpected error'
+                        strIconHTML = '<i class="bi bi-bug"></i>'
                         break
                     // Thunderstorm forecasts with hail are apparently only available in Central Europe, so I won't include them in this switch statement
                 }
 
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Weather Conditions: ${strWeatherCond}</p>`
-                document.querySelector('#divWeatherMain').innerHTML += `<i class="bi bi-brightness-high"></i>`
+                document.querySelector('#divWeatherMain').innerHTML += strIconHTML
 
             } catch(objError){
                 console.log('Error fetching objData',objError)
