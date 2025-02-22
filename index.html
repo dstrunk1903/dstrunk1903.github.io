@@ -54,9 +54,9 @@
 
                 console.log(objData)
 
-                document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Temperature: ${objData.current.temperature_2m}${objData.current_units.temperature_2m}</p>`
+                document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center">Current Temperature: ${objData.current.temperature_2m}${objData.current_units.temperature_2m}</p>`
                 document.querySelector('#divWeatherMain').innerHTML += `<h1 class="bi bi-thermometer text-center"></h1>`
-                document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Humidity: ${objData.current.relative_humidity_2m}${objData.current_units.relative_humidity_2m}</p>`
+                document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center">Current Humidity: ${objData.current.relative_humidity_2m}${objData.current_units.relative_humidity_2m}</p>`
                 document.querySelector('#divWeatherMain').innerHTML += `<h1 class="bi bi-moisture text-center"></h1>`
 
                 let strWeatherCond = ''
@@ -175,7 +175,7 @@
                     // Thunderstorm forecasts with hail are apparently only available in Central Europe, so I won't include them in this switch statement
                 }
 
-                document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Weather Conditions: ${strWeatherCond}</p>`
+                document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center">Current Weather Conditions: ${strWeatherCond}</p>`
                 document.querySelector('#divWeatherMain').innerHTML += strIconHTML
 
             } catch(objError){
