@@ -4,7 +4,7 @@
     <meta charset="UTF-8"> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="mobile-web-app-capable" content="yes"> 
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <title>Caracal Weather Services - Current Weather Report</title> 
@@ -28,7 +28,7 @@
                 <hr>
             </div>
             <div>
-                <!-- Attribution -->
+                <!-- Open Meteo attribution -->
                 <p class="text-center mb-0">Weather data provided by Open Meteo</p>
                 <p class="text-center">https://open-meteo.com/</p>
             </div>
@@ -58,6 +58,7 @@
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Humidity: ${objData.current.relative_humidity_2m}${objData.current_units.relative_humidity_2m}</p>`
 
                 let strWeatherCond = ''
+                let strIconID = ''
 
                 // Switch statement to dynamically interpret WMO codes
                 switch(objData.current.weather_code){
@@ -146,6 +147,7 @@
                 }
 
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-4">Current Weather Conditions: ${strWeatherCond}</p>`
+                document.querySelector('#divWeatherMain').innerHTML += `<i class="bi bi-brightness-high"></i>`
 
             } catch(objError){
                 console.log('Error fetching objData',objError)
