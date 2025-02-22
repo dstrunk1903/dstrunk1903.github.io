@@ -50,21 +50,20 @@
                 const objData = await objResponse.json()
 
                 console.log(objData)
+
+                let strCurrTemp = objData.current.temperature_2m
+                let strCurrHumidity = objData.current.relative_humidity_2m
+                let strWeatherCode = objData.current.weather_code
+
+                $('#divCardBody').append(`<p>Current Temperature: ${objData.current.temperature_2m}</p>`)
+                $('#divCardBody').append(`<p>Current Humidity: ${objData.current.relative_humidity_2m}</p>`)
+                $('#divCardBody').append(`<p>Current Weather Code: ${objData.current.weather_code}</p>`)
             } catch(objError){
                 console.log('Error fetching objData',objError)
             }
         }
 
         readWeather()
-
-        let strCurrTemp = objData.current.temperature_2m
-        let strCurrHumidity = objData.current.relative_humidity_2m
-        let strWeatherCode = objData.current.weather_code
-
-        $('#divCardBody').append(`<p>Current Temperature: ${objData.current.temperature_2m}</p>`)
-        $('#divCardBody').append(`<p>Current Humidity: ${objData.current.relative_humidity_2m}</p>`)
-        $('#divCardBody').append(`<p>Current Weather Code: ${objData.current.weather_code}</p>`)
-
     </script>
 </body>
 </html>
