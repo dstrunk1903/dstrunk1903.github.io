@@ -31,19 +31,22 @@
             </div>
             <div class="card-body" id="divWeatherMain">
                 <!-- Main card body -->
-            </div class="mb-0">
+                <!-- This will be appended to by the readWeather function -->
+            </div>
             <div class="card-footer">
                 <!-- Open Meteo attribution -->
                 <p class="text-center mb-0">Weather data provided by Open Meteo</p>
-                <p class="text-center">https://open-meteo.com/</p>
+                <p class="text-center"><a href="https://open-meteo.com/" class="text-center">https://open-meteo.com/</a></p>
             </div>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
+        // Defining Open Meteo API call. This call fetches precisely only the current (15 minutely) temperature, humidity, and WMO weather code
         const strBaseURL = 'https://api.open-meteo.com/v1/forecast?latitude=36.1628&longitude=-85.5016&current=temperature_2m,relative_humidity_2m,weather_code&temperature_unit=fahrenheit&timezone=America%2FChicago&forecast_days=1'
         async function readWeather(){
             try {
+                // Send the API call to Open Meteo
                 const objResponse = await fetch(strBaseURL, {
                     method:'GET',
                     headers: {
@@ -51,130 +54,134 @@
                     }
                 })
 
+                // If it failed, throw an error
                 if(!objResponse.ok){
                     throw new Error(`HTTP Error Status:${objResponse.status}`)
                 }
 
+                // Capture the response from Open Meteo, and put a hold on execution until it arrives
                 const objData = await objResponse.json()
 
-                console.log(objData)
-
+                // Initialize some variables to keep track of the WMO code interpretation and icon we want to display
                 let strWeatherCond = ''
                 let strIconHTML = ''
 
                 // Switch statement to dynamically interpret WMO codes and assign a corresponding bootstrap icon
+                // Note: Icons are encapsulated inside of a paragraph class to provide centering
+                // Secondary note: Icons are given the aria-hidden attribute because they are purely decorative and of no use to screen reader users
                 switch(objData.current.weather_code){
                     case 0:
                         strWeatherCond = 'Clear sky'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-brightness-high" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-brightness-high" style="font-size: 5em"></i></p>'
                         break
                     case 1:
                         strWeatherCond = 'Mainly clear'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-brightness-low" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-brightness-low" style="font-size: 5em"></i></p>'
                         break
                     case 2:
                         strWeatherCond = 'Partly cloudy'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud" style="font-size: 5em"></i></p>'
                         break
                     case 3:
                         strWeatherCond = 'Overcast'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-clouds" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-clouds" style="font-size: 5em"></i></p>'
                         break
                     case 45:
                         strWeatherCond = 'Fog'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-fog" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-fog" style="font-size: 5em"></i></p>'
                         break
                     case 48:
                         strWeatherCond = 'Depositing rime fog'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-fog2" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-fog2" style="font-size: 5em"></i></p>'
                         break
                     case 51:
                         strWeatherCond = 'Light drizzle'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
                         break
                     case 53:
                         strWeatherCond = 'Moderate drizzle'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
                         break
                     case 55:
                         strWeatherCond = 'Dense drizzle'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
                         break
                     case 56:
                         strWeatherCond = 'Light freezing drizzle'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
                         break
                     case 57:
                         strWeatherCond = 'Dense freezing drizzle'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-drizzle" style="font-size: 5em"></i></p>'
                         break
                     case 61:
                         strWeatherCond = 'Slight rain'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-rain" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-rain" style="font-size: 5em"></i></p>'
                         break
                     case 63:
                         strWeatherCond = 'Moderate rain'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-rain" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-rain" style="font-size: 5em"></i></p>'
                         break
                     case 65:
                         strWeatherCond = 'Heavy rain'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-rain-heavy" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-rain-heavy" style="font-size: 5em"></i></p>'
                         break
                     case 66:
                         strWeatherCond = 'Light freezing rain'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-sleet" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-sleet" style="font-size: 5em"></i></p>'
                         break
                     case 67:
                         strWeatherCond = 'Heavy freezing rain'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-sleet" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-sleet" style="font-size: 5em"></i></p>'
                         break
                     case 71:
                         strWeatherCond = 'Slight snow fall'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
                         break
                     case 73:
                         strWeatherCond = 'Moderate snow fall'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
                         break
                     case 75:
                         strWeatherCond = 'Heavy snow fall'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
                         break
                     case 77:
                         strWeatherCond = 'Snow grains'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-sleet" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-sleet" style="font-size: 5em"></i></p>'
                         break
                     case 80:
                         strWeatherCond = 'Slight rain showers'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-rain" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-rain" style="font-size: 5em"></i></p>'
                         break
                     case 81:
                         strWeatherCond = 'Moderate rain showers'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-rain" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-rain" style="font-size: 5em"></i></p>'
                         break
                     case 82:
                         strWeatherCond = 'Violent rain showers'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-rain-heavy" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-rain-heavy" style="font-size: 5em"></i></p>'
                         break
                     case 85:
                         strWeatherCond = 'Slight snow showers'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
                         break
                     case 86:
                         strWeatherCond = 'Heavy snow showers'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-snow" style="font-size: 5em"></i></p>'
                         break
                     case 95:
                         strWeatherCond = 'Thunderstorm'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-cloud-lightning-rain" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-cloud-lightning-rain" style="font-size: 5em"></i></p>'
                         break
                     default:
                         strWeatherCond = 'Unexpected error'
-                        strIconHTML = '<p class="text-center"><i class="bi bi-bug text-center" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-bug text-center" style="font-size: 5em"></i></p>'
                         break
                     // Thunderstorm forecasts with hail are apparently only available in Central Europe, so I won't include them in this switch statement
                 }
 
+                // Use the information from the above switch statement to populate the card with weather condition data
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center mb-0">Current Weather Conditions: ${strWeatherCond}</p>`
                 document.querySelector('#divWeatherMain').innerHTML += strIconHTML
 
@@ -183,18 +190,18 @@
                 // If statement to dynamically assign thermometer icon, icon color, and progress bar fullness/color
                 if(objData.current.temperature_2m >= 60)
                 {
-                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progess bar indicating temperature" aria-valuenow="${objData.current.temperature_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-danger" style="width: ${objData.current.temperature_2m}%"></div></div>`
-                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center"><i class="bi bi-thermometer-high" style="font-size: 5em; color:red"></i></p>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating temperature" aria-valuenow="${objData.current.temperature_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-danger" style="width: ${objData.current.temperature_2m}%"></div></div>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-thermometer-high" style="font-size: 5em; color:red"></i></p>`
                 }
                 else if(objData.current.temperature_2m >= 40)
                 {
-                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progess bar indicating temperature" aria-valuenow="${objData.current.temperature_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-warning" style="width: ${objData.current.temperature_2m}%"></div></div>`
-                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center"><i class="bi bi-thermometer-half" style="font-size: 5em; color:orange"></i></p>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating temperature" aria-valuenow="${objData.current.temperature_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-warning" style="width: ${objData.current.temperature_2m}%"></div></div>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-thermometer-half" style="font-size: 5em; color:orange"></i></p>`
                 }
                 else
                 {
-                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progess bar indicating temperature" aria-valuenow="${objData.current.temperature_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-info" style="width: ${objData.current.temperature_2m}%"></div></div>`
-                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center"><i class="bi bi-thermometer" style="font-size: 5em; color: cornflowerblue"></i></p>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating temperature" aria-valuenow="${objData.current.temperature_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-info" style="width: ${objData.current.temperature_2m}%"></div></div>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-thermometer" style="font-size: 5em; color: cornflowerblue"></i></p>`
                 }
 
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center">Current Humidity: ${objData.current.relative_humidity_2m}${objData.current_units.relative_humidity_2m}</p>`
@@ -202,21 +209,22 @@
                 // If statement to dynamically assign humidity icon and progress bar
                 if(objData.current.relative_humidity_2m > 60)
                 {
-                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progess bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-danger" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
-                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center"><i class="bi bi-droplet-fill" style="font-size: 5em;color: cornflowerblue"></i></p>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-danger" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-droplet-fill" style="font-size: 5em;color: cornflowerblue"></i></p>`
                 }
                 else if(objData.current.relative_humidity_2m > 40)
                 {
-                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progess bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-warning" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
-                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center"><i class="bi bi-droplet-half" style="font-size: 5em;color: cornflowerblue"></i></p>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-warning" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-droplet-half" style="font-size: 5em;color: cornflowerblue"></i></p>`
                 }
                 else
                 {
-                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progess bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
-                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center"><i class="bi bi-droplet" style="font-size: 5em; color cornflowerblue"></i></p>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-droplet" style="font-size: 5em; color cornflowerblue"></i></p>`
                 }
 
             } catch(objError){
+                // Describe the error and print to console
                 console.log('Error fetching objData',objError)
             }
         }
