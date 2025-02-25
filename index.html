@@ -220,7 +220,7 @@
                 else
                 {
                     document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
-                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-droplet" style="font-size: 5em; color cornflowerblue"></i></p>`
+                    document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-droplet" style="font-size: 5em; color: cornflowerblue"></i></p>`
                 }
 
             } catch(objError){
