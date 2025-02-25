@@ -176,7 +176,7 @@
                         break
                     default:
                         strWeatherCond = 'Unexpected error'
-                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-bug text-center" style="font-size: 5em"></i></p>'
+                        strIconHTML = '<p class="text-center" aria-hidden="true"><i class="bi bi-bug" style="font-size: 5em"></i></p>'
                         break
                     // Thunderstorm forecasts with hail are apparently only available in Central Europe, so I won't include them in this switch statement
                 }
@@ -206,7 +206,7 @@
 
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center">Current Humidity: ${objData.current.relative_humidity_2m}${objData.current_units.relative_humidity_2m}</p>`
 
-                // If statement to dynamically assign humidity icon and progress bar
+                // If statement to dynamically assign humidity icon and progress bar fullness/color
                 if(objData.current.relative_humidity_2m >= 60)
                 {
                     document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-danger" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
