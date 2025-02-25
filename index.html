@@ -207,12 +207,12 @@
                 document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center">Current Humidity: ${objData.current.relative_humidity_2m}${objData.current_units.relative_humidity_2m}</p>`
 
                 // If statement to dynamically assign humidity icon and progress bar
-                if(objData.current.relative_humidity_2m > 60)
+                if(objData.current.relative_humidity_2m >= 60)
                 {
                     document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-danger" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
                     document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-droplet-fill" style="font-size: 5em;color: cornflowerblue"></i></p>`
                 }
-                else if(objData.current.relative_humidity_2m > 40)
+                else if(objData.current.relative_humidity_2m >= 40)
                 {
                     document.querySelector('#divWeatherMain').innerHTML += `<div class="progress" role="progressbar" aria-label="Progress bar indicating humidity" aria-valuenow="${objData.current.relative_humidity_2m}" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-warning" style="width: ${objData.current.relative_humidity_2m}%"></div></div>`
                     document.querySelector('#divWeatherMain').innerHTML += `<p class="text-center" aria-hidden="true"><i class="bi bi-droplet-half" style="font-size: 5em;color: cornflowerblue"></i></p>`
